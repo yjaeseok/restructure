@@ -16,11 +16,11 @@ public class HyundaiFloorDisplayImplementor implements IFloorDisplayImplementor 
 		if ( ! activated ) return;
 		System.out.println("Hyundai Voice: Current Postion " + floor);
 	}
-	public void showDirection(int direction) {
+	public void showDirection(Direction direction) {
 		if ( ! activated ) return;
 		System.out.println("Hyundai Display: Current Direction " + direction);
 	}
-	public void expressDirectionByVoice(int direction) {
+	public void expressDirectionByVoice(Direction direction) {
 		if ( ! activated ) return;
 		System.out.println("Hyundai Voice: Current Direction " + direction);
 	}

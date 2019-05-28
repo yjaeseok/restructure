@@ -7,7 +7,7 @@ class SimpleElevatorMotor {
 	public SimpleElevatorMotor(List<ElevatorController> ctrls) {
 		this.ctrls = ctrls;
 	}	
-	public void requestElevator(int dest, int dir) {
+	public void requestElevator(int dest, Direction dir) {
 		int sel;
 		// 0..23
 		int hr = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) ;

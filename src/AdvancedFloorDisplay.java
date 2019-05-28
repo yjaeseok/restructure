@@ -11,7 +11,7 @@ public class AdvancedFloorDisplay extends AbstractFloorDisplay {
 		imp.expressCurrentPositionByVoice(flr);
 	}
 	@Override
-	public void showDir(int dir) {
+	public void showDir(Direction dir) {
 		IFloorDisplayImplementor imp = getImp();
 		imp.showDirection(dir);
 		imp.expressDirectionByVoice(dir);

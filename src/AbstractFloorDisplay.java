@@ -10,7 +10,7 @@ abstract class AbstractFloorDisplay {
 	}
 	public void update() {
 		int curFlr = ctrl.getCurFlr() ;
-		int curDir = ctrl.getCurDir();
+		Direction curDir = ctrl.getCurDir();
 		showPos(curFlr);
 		showDir(curDir);
 	}
@@ -22,5 +22,5 @@ abstract class AbstractFloorDisplay {
 	}
 	protected IFloorDisplayImplementor getImp() { return imp; }
 	public abstract void showPos(int flr);
-	public abstract void showDir(int dir);
+	public abstract void showDir(Direction dir);
 }

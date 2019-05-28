@@ -7,6 +7,6 @@ public class ElevatorRequest {
 		this.flr = flr;
 		this.em = em;
 	}
-	public void up() { em.requestElevator(flr, 1); }
-	public void down() { em.requestElevator(flr, -1); }
+	public void up() { em.requestElevator(flr, Direction.UP); }
+	public void down() { em.requestElevator(flr, Direction.DOWN); }
 }
