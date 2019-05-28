@@ -8,7 +8,7 @@ public class FloorDoor {
 	private boolean doorOpenedForHyundai;
 	private char doorOpenedForSamsung;
 
-	public FloorDoor(DeviceVendor vendor, int floor) {
+	public FloorDoor(final DeviceVendor vendor, final int floor) {
 		this.vendor = vendor;
 		this.floor = floor;
 		

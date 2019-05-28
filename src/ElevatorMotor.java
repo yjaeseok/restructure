@@ -5,20 +5,20 @@ public class ElevatorMotor  {
 	private MotorStatus motorStatus ;
 	private DeviceVendor motorVendor;
 	
-	public ElevatorMotor(DeviceVendor motorVendor) {
+	public ElevatorMotor(final DeviceVendor motorVendor) {
 		this.motorVendor = motorVendor;
 		motorStatus = MotorStatus.STOPPED ;
 	}
-	public void setElevatorController(ElevatorController elevatorController) {
+	public void setElevatorController(final ElevatorController elevatorController) {
 		this.elevatorController = elevatorController ;
 	}
 	public MotorStatus getMotorStatus() {
 		return motorStatus;
 	}
-	private void setMotorStatus(MotorStatus motorStatus) {
+	private void setMotorStatus(final MotorStatus motorStatus) {
 		this.motorStatus = motorStatus;
 	}
-	public void move(int currentFloor, Direction direction) {
+	public void move(final int currentFloor, final Direction direction) {
 		if (  getMotorStatus() == MotorStatus.MOVING ) return ;
 		
 		assert elevatorController != null;

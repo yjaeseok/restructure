@@ -7,7 +7,7 @@ public class ElevatorDoor {
 	private char elevatorDoorStatusForSamsung ;
 	private int elevatorDoorOpenedForHyundai ;
 
-	public ElevatorDoor(DeviceVendor vendor) {
+	public ElevatorDoor(final DeviceVendor vendor) {
 		this.vendor = vendor;
 		
 		switch ( vendor ) {

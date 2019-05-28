@@ -21,7 +21,7 @@ public class Main {
 		requestButtons.get(0).down();
 	}
 
-	private static List<ElevatorController> createElevatorControllers(int floorCount) {
+	private static List<ElevatorController> createElevatorControllers(final int floorCount) {
 		List<ElevatorController> elevatorControllers = new ArrayList<>();
 		
 		// Devices for Elevator 1
@@ -62,7 +62,7 @@ public class Main {
 		return elevatorControllers;
 	}
 
-	private static List<FloorDoor> createFloorDoors(int floorCount, DeviceVendor vendor) {
+	private static List<FloorDoor> createFloorDoors(final int floorCount, final DeviceVendor vendor) {
 		List<FloorDoor> floorDoors = new ArrayList<>();
 		
 		for ( int i = 0 ; i < floorCount; i ++ )

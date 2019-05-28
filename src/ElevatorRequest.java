@@ -3,7 +3,7 @@ public class ElevatorRequest {
 	private final int flr;
 	private SimpleElevatorMotor em;
 
-	public ElevatorRequest(int flr, SimpleElevatorMotor em) {
+	public ElevatorRequest(final int flr, final SimpleElevatorMotor em) {
 		this.flr = flr;
 		this.em = em;
 	}

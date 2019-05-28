@@ -18,9 +18,9 @@ class ElevatorController {
 	private ElevatorInsideDisplay elevatorInsideDisplay;
 	private AbstractFloorDisplay abstractFloorDisplay;
 	
-	public ElevatorController(int kind, ElevatorMotor elevatorMotor,
-			ElevatorDoor elevatorDoor, List<FloorDoor> floorDoors,
-			JavaDoorTimer doorTimer) {
+	public ElevatorController(final int kind, final ElevatorMotor elevatorMotor,
+			final ElevatorDoor elevatorDoor, final List<FloorDoor> floorDoors,
+			final JavaDoorTimer doorTimer) {
 		this.k = kind;
 		this.elevatorMotor = elevatorMotor;
 		this.elevatorDoor = elevatorDoor;
@@ -59,7 +59,7 @@ class ElevatorController {
 			}
 		}
 	}
-	public void approaching(int flr) {
+	public void approaching(final int flr) {
 		// elevatorMotor, elevatorDoor, floorDoors should not be null
 		System.out.println("\nApproaching " + flr + "th floor") ;
 		setCurFlr(flr) ;
@@ -123,7 +123,7 @@ class ElevatorController {
 	public List<Integer> getFloorstobeVisited() {
 		return floorstobeVisited;
 	}
-	public DoorStatus getDrSts(int floor) {
+	public DoorStatus getDrSts(final int floor) {
 		// elevatorDoor, floorDoors should not be null
 		
 		DoorStatus elevatorDS = elevatorDoor.getDoorStatus();
@@ -138,7 +138,7 @@ class ElevatorController {
 	public int getCurrentElevatorFloor() {
 		return curFlr ;
 	}
-	public void setCurFlr(int curFlr) {
+	public void setCurFlr(final int curFlr) {
 		this.curFlr = curFlr;
 		
 		controlRoomDisplay.update();
@@ -148,7 +148,7 @@ class ElevatorController {
 	public Direction getCurrentElevatorDirection() {
 		return curDir;
 	}
-	public void setCurDir(Direction curDir) {
+	public void setCurDir(final Direction curDir) {
 		this.curDir = curDir;
 		
 		controlRoomDisplay.update();
@@ -158,19 +158,19 @@ class ElevatorController {
 	public ControlRoomDisplay getControlRoomDisplay() {
 		return controlRoomDisplay;
 	}
-	public void setControlRoomDisplay(ControlRoomDisplay controlRoomDisplay) {
+	public void setControlRoomDisplay(final ControlRoomDisplay controlRoomDisplay) {
 		this.controlRoomDisplay = controlRoomDisplay;
 	}
 	public ElevatorInsideDisplay getElevatorInsideDisplay() {
 		return elevatorInsideDisplay;
 	}
-	public void setElevatorInsideDisplay(ElevatorInsideDisplay elevatorInsideDisplay) {
+	public void setElevatorInsideDisplay(final ElevatorInsideDisplay elevatorInsideDisplay) {
 		this.elevatorInsideDisplay = elevatorInsideDisplay;
 	}
 	public AbstractFloorDisplay getAbstractFloorDisplay() {
 		return abstractFloorDisplay;
 	}
-	public void setAbstractFloorDisplay(AbstractFloorDisplay abstractFloorDisplay) {
+	public void setAbstractFloorDisplay(final AbstractFloorDisplay abstractFloorDisplay) {
 		this.abstractFloorDisplay = abstractFloorDisplay;
 	}
 }

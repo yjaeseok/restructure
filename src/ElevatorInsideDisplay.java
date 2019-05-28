@@ -2,7 +2,7 @@
 
 public class ElevatorInsideDisplay {
 	private ElevatorController ctrl ;
-	public ElevatorInsideDisplay(ElevatorController ctrl) {
+	public ElevatorInsideDisplay(final ElevatorController ctrl) {
 		this.ctrl = ctrl ;
 	}
 	public void update() {

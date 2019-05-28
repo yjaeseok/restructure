@@ -4,10 +4,10 @@ import java.util.List;
 class SimpleElevatorMotor {
 	private List<ElevatorController> ctrls ;
 
-	public SimpleElevatorMotor(List<ElevatorController> ctrls) {
+	public SimpleElevatorMotor(final List<ElevatorController> ctrls) {
 		this.ctrls = ctrls;
 	}	
-	public void requestElevator(int dest, Direction dir) {
+	public void requestElevator(final int dest, final Direction dir) {
 		int sel;
 		// 0..23
 		int hr = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) ;
@@ -21,7 +21,7 @@ class SimpleElevatorMotor {
 		}
 		ctrls.get(sel).goTo(dest) ;
 	}
-	public void emergencyStop(boolean goTo1stFloor) {
+	public void emergencyStop(final boolean goTo1stFloor) {
 		for ( ElevatorController ctrl: ctrls )
 			if ( goTo1stFloor ) {
 				ctrl.getFloorstobeVisited().clear();
@@ -30,7 +30,7 @@ class SimpleElevatorMotor {
 			else
 				ctrl.stop();
 	}
-	public boolean isToBeVisistedFloor(int flr) {
+	public boolean isToBeVisistedFloor(final int flr) {
 		for ( ElevatorController ctrl: ctrls ) {
 			if ( ctrl.getFloorstobeVisited().contains(flr) ) return true;
 		}
@@ -41,7 +41,7 @@ class SimpleElevatorMotor {
 			print(ctrl);
 		}
 	}
-	private void print(ElevatorController ctrl) {
+	private void print(final ElevatorController ctrl) {
 		System.out.println(ctrl.getCurrentElevatorFloor());
 		System.out.println(ctrl.getCurrentElevatorDirection());
 		System.out.println(ctrl.getFloorstobeVisited());

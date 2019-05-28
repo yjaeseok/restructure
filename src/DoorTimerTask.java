@@ -10,7 +10,7 @@ class DoorTimerTask extends TimerTask {
 		doorTimeout.doorTimeout() ;
 	}
 
-	public void setDoorTimeout(ElevatorController doorTimeout) {
+	public void setDoorTimeout(final ElevatorController doorTimeout) {
 		this.doorTimeout = doorTimeout;
 	}	
 }
