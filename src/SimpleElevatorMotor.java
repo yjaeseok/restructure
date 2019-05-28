@@ -8,19 +8,26 @@ class SimpleElevatorMotor {
 		this.ctrls = ctrls;
 	}	
 	public void requestElevator(final int dest, final Direction dir) {
-		int sel;
+		int select;
 		// 0..23
-		int hr = Calendar.getInstance().get(Calendar.HOUR_OF_DAY) ;
-		if ( hr < 12 ) { // 오전; Response Time Scheduler
-			sel = ctrls.size() -1;
-			System.out.println("ThroughputScheduler selects " + sel);
+		if ( isBefore12AM() ) { // 오전; Response Time Scheduler
+			select = ctrls.size() -1;
 		}
 		else { // 오후; Throughput Scheduler
-			sel = 0;
-			System.out.println("ThroughputScheduler selects " + sel);
+			select = 0;
 		}
-		ctrls.get(sel).goTo(dest) ;
+		printRequestElevator(select);
+		ctrls.get(select).goTo(dest) ;
 	}
+
+	private void printRequestElevator(int select) {
+		System.out.println("ThroughputScheduler selects " + select);
+	}
+
+	private boolean isBefore12AM() {
+		return Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 12;
+	}
+
 	public void emergencyStop(final boolean goTo1stFloor) {
 		for ( ElevatorController ctrl: ctrls )
 			if ( goTo1stFloor ) {
