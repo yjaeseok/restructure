@@ -38,7 +38,7 @@ class ElevatorController {
 		}
 		// open doors
 		elevatorDoor.open() ;
-		floorDoors.get(getCurFlr()).open() ;
+		floorDoors.get(getCurrentElevatorFloor()).open() ;
 		if ( doorTimer != null ) doorTimer.start() ;
 	}
 	
@@ -54,7 +54,7 @@ class ElevatorController {
 			if ( dst > curFlr ) nxtDir = Direction.UP ;
 			else nxtDir =  Direction.DOWN ;
 			if ( nxtDir != Direction.NONE ) {
-				elevatorMotor.move(getCurFlr(), nxtDir) ;
+				elevatorMotor.move(getCurrentElevatorFloor(), nxtDir) ;
 				setCurDir(nxtDir);
 			}
 		}
@@ -76,7 +76,7 @@ class ElevatorController {
 			
 			// open doors
 			elevatorDoor.open() ;
-			floorDoors.get(getCurFlr()).open() ;
+			floorDoors.get(getCurrentElevatorFloor()).open() ;
 			if ( doorTimer != null ) doorTimer.start() ;
 			
 			floorstobeVisited.remove(flr) ;
@@ -93,11 +93,11 @@ class ElevatorController {
 		else nxtDir =  Direction.DOWN ;
 		
 		elevatorDoor.close() ;
-		floorDoors.get(getCurFlr()).close() ;
+		floorDoors.get(getCurrentElevatorFloor()).close() ;
 		if ( doorTimer != null ) doorTimer.stop() ;
 		
 		if ( nxtDir != Direction.NONE ) {
-			elevatorMotor.move(getCurFlr(), nxtDir) ;
+			elevatorMotor.move(getCurrentElevatorFloor(), nxtDir) ;
 			setCurDir(nxtDir);
 		}
 	}
@@ -107,7 +107,7 @@ class ElevatorController {
 		if ( getCurrentElevatorDirection() == Direction.NONE  ) {
 			// open doors
 			elevatorDoor.open() ;
-			floorDoors.get(getCurFlr()).open() ;
+			floorDoors.get(getCurrentElevatorFloor()).open() ;
 			if ( doorTimer != null ) doorTimer.start() ;
 		}
 	}
@@ -116,7 +116,7 @@ class ElevatorController {
 		if ( getCurrentElevatorDirection() == Direction.NONE ) {
 			// closeDoor
 			elevatorDoor.close() ;
-			floorDoors.get(getCurFlr()).close() ;
+			floorDoors.get(getCurrentElevatorFloor()).close() ;
 			if ( doorTimer != null ) doorTimer.stop() ;
 		}
 	}
@@ -135,7 +135,7 @@ class ElevatorController {
 		
 		return DS;
 	}
-	public int getCurFlr() {
+	public int getCurrentElevatorFloor() {
 		return curFlr ;
 	}
 	public void setCurFlr(int curFlr) {
