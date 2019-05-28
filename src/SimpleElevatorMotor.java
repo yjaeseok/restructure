@@ -1,10 +1,10 @@
 
 import java.util.Calendar;
 import java.util.List;
-class SimpleEM {
-	private List<EC> ctrls ;
+class SimpleElevatorMotor {
+	private List<ElevatorController> ctrls ;
 
-	public SimpleEM(List<EC> ctrls) {
+	public SimpleElevatorMotor(List<ElevatorController> ctrls) {
 		this.ctrls = ctrls;
 	}	
 	public void requestElevator(int dest, int dir) {
@@ -22,7 +22,7 @@ class SimpleEM {
 		ctrls.get(sel).goTo(dest) ;
 	}
 	public void emergencyStop(boolean goTo1stFloor) {
-		for ( EC ctrl: ctrls )
+		for ( ElevatorController ctrl: ctrls )
 			if ( goTo1stFloor ) {
 				ctrl.getFloorstobeVisited().clear();
 				ctrl.goTo(1);
@@ -31,17 +31,17 @@ class SimpleEM {
 				ctrl.stop();
 	}
 	public boolean isToBeVisistedFloor(int flr) {
-		for ( EC ctrl: ctrls ) {
+		for ( ElevatorController ctrl: ctrls ) {
 			if ( ctrl.getFloorstobeVisited().contains(flr) ) return true;
 		}
 		return false;
 	}
 	public void print() {
-		for ( EC ctrl: ctrls ) {
+		for ( ElevatorController ctrl: ctrls ) {
 			print(ctrl);
 		}
 	}
-	private void print(EC ctrl) {
+	private void print(ElevatorController ctrl) {
 		System.out.println(ctrl.getCurFlr());
 		System.out.println(ctrl.getCurDir());
 		System.out.println(ctrl.getFloorstobeVisited());

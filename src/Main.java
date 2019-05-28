@@ -8,9 +8,9 @@ public class Main {
 		
 		int floorCount = 5;
 		
-		List<EC> elevatorControllers = createElevatorControllers(floorCount);
+		List<ElevatorController> elevatorControllers = createElevatorControllers(floorCount);
 		
-		SimpleEM em = new SimpleEM(elevatorControllers);
+		SimpleElevatorMotor em = new SimpleElevatorMotor(elevatorControllers);
 		
 		List<ElevatorRequest> requestButtons = new ArrayList<>();
 		for ( int i = 0; i < floorCount; i ++ ) {
@@ -21,18 +21,18 @@ public class Main {
 		requestButtons.get(0).down();
 	}
 
-	private static List<EC> createElevatorControllers(int floorCount) {
-		List<EC> elevatorControllers = new ArrayList<>();
+	private static List<ElevatorController> createElevatorControllers(int floorCount) {
+		List<ElevatorController> elevatorControllers = new ArrayList<>();
 		
 		// Devices for Elevator 1
-		EM elevatorMotor1 = new EM(DeviceVendor.Samsung);
+		ElevatorMotor elevatorMotor1 = new ElevatorMotor(DeviceVendor.Samsung);
 		JavaDT doorTimer1 = new JavaDT();
 			
-		ED elevatorDoor1 = new ED(DeviceVendor.Samsung);
-		List<FD> floorDoors1 = createFloorDoors(floorCount, DeviceVendor.Samsung);
+		ElevatorDoor elevatorDoor1 = new ElevatorDoor(DeviceVendor.Samsung);
+		List<FloorDoor> floorDoors1 = createFloorDoors(floorCount, DeviceVendor.Samsung);
 		
 		// every floor stop
-		EC elevatorController1 = new EC(0,
+		ElevatorController elevatorController1 = new ElevatorController(0,
 				elevatorMotor1, elevatorDoor1, floorDoors1, doorTimer1);
 		doorTimer1.setDoorTimeout(elevatorController1);
 		elevatorMotor1.setElevatorController(elevatorController1);
@@ -45,12 +45,12 @@ public class Main {
 		elevatorControllers.add(elevatorController1);
 		
 		// Devices for Elevator 2
-		EM elevatorMotor2 = new EM(DeviceVendor.Hyundai);
-		ED elevatorDoor2 = new ED(DeviceVendor.Hyundai);
-		List<FD> floorDoors2 = createFloorDoors(floorCount, DeviceVendor.Hyundai);
+		ElevatorMotor elevatorMotor2 = new ElevatorMotor(DeviceVendor.Hyundai);
+		ElevatorDoor elevatorDoor2 = new ElevatorDoor(DeviceVendor.Hyundai);
+		List<FloorDoor> floorDoors2 = createFloorDoors(floorCount, DeviceVendor.Hyundai);
 		
 		// demand only stop
-		EC elevatorController2 = new EC(1,
+		ElevatorController elevatorController2 = new ElevatorController(1,
 					elevatorMotor2, elevatorDoor2, floorDoors2, null);
 		elevatorMotor2.setElevatorController(elevatorController2);
 
@@ -62,11 +62,11 @@ public class Main {
 		return elevatorControllers;
 	}
 
-	private static List<FD> createFloorDoors(int floorCount, DeviceVendor vendor) {
-		List<FD> floorDoors = new ArrayList<>();
+	private static List<FloorDoor> createFloorDoors(int floorCount, DeviceVendor vendor) {
+		List<FloorDoor> floorDoors = new ArrayList<>();
 		
 		for ( int i = 0 ; i < floorCount; i ++ )
-			floorDoors.add(new FD(vendor, i));
+			floorDoors.add(new FloorDoor(vendor, i));
 		return floorDoors;
 	}
 }

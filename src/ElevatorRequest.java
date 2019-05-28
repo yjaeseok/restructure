@@ -1,9 +1,9 @@
 
 public class ElevatorRequest {
 	private final int flr;
-	private SimpleEM em;
+	private SimpleElevatorMotor em;
 
-	public ElevatorRequest(int flr, SimpleEM em) {
+	public ElevatorRequest(int flr, SimpleElevatorMotor em) {
 		this.flr = flr;
 		this.em = em;
 	}

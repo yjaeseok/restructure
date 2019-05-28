@@ -1,6 +1,6 @@
 
 
-public class FD {
+public class FloorDoor {
 	private DeviceVendor vendor;
 	private int floor ;
 	
@@ -8,7 +8,7 @@ public class FD {
 	private boolean doorOpenedForHyundai;
 	private char doorOpenedForSamsung;
 
-	public FD(DeviceVendor vendor, int floor) {
+	public FloorDoor(DeviceVendor vendor, int floor) {
 		this.vendor = vendor;
 		this.floor = floor;
 		

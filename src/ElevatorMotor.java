@@ -1,15 +1,15 @@
 
 
-public class EM  {
-	private EC elevatorController ;
+public class ElevatorMotor  {
+	private ElevatorController elevatorController ;
 	private MotorStatus motorStatus ;
 	private DeviceVendor motorVendor;
 	
-	public EM(DeviceVendor motorVendor) {
+	public ElevatorMotor(DeviceVendor motorVendor) {
 		this.motorVendor = motorVendor;
 		motorStatus = MotorStatus.STOPPED ;
 	}
-	public void setElevatorController(EC elevatorController) {
+	public void setElevatorController(ElevatorController elevatorController) {
 		this.elevatorController = elevatorController ;
 	}
 	public MotorStatus getMotorStatus() {

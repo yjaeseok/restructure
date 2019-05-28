@@ -1,8 +1,8 @@
 
 
 public class ElevatorInsideDisplay {
-	private EC ctrl ;
-	public ElevatorInsideDisplay(EC ctrl) {
+	private ElevatorController ctrl ;
+	public ElevatorInsideDisplay(ElevatorController ctrl) {
 		this.ctrl = ctrl ;
 	}
 	public void update() {

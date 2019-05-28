@@ -2,12 +2,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class EC {
+class ElevatorController {
 	private int k; // 0: every floor stop, 1: demand only stop
 
-	private EM em;
-	private ED ed;
-	private List<FD> fds;
+	private ElevatorMotor elevatorMotor;
+	private ElevatorDoor elevatorDoor;
+	private List<FloorDoor> fds;
 	private JavaDT dt;
 	
 	private List<Integer> floorstobeVisited = new ArrayList<>();
@@ -18,12 +18,12 @@ class EC {
 	private ElevatorInsideDisplay elevatorInsideDisplay;
 	private AbstractFloorDisplay abstractFloorDisplay;
 	
-	public EC(int kind, EM elevatorMotor,
-			ED elevatorDoor, List<FD> floorDoors,
+	public ElevatorController(int kind, ElevatorMotor elevatorMotor,
+			ElevatorDoor elevatorDoor, List<FloorDoor> floorDoors,
 			JavaDT doorTimer) {
 		this.k = kind;
-		this.em = elevatorMotor;
-		this.ed = elevatorDoor;
+		this.elevatorMotor = elevatorMotor;
+		this.elevatorDoor = elevatorDoor;
 		this.fds = floorDoors;
 		this.dt = doorTimer;
 		
@@ -33,27 +33,30 @@ class EC {
 	public void stop() {
 		// elevatorMotor, elevatorDoor, floorDoors should not be null
 		if ( getCurDir() != 0) {
-			em.stop();
+			elevatorMotor.stop();
 			setCurDir(0);
 		}
 		// open doors
-		ed.open() ;
+		elevatorDoor.open() ;
 		fds.get(getCurFlr()).open() ;
 		if ( dt != null ) dt.start() ;
 	}
+	
+	// dst variable name is too ambiguous
 	public void goTo(int dst) {
 		// elevatorMotor should not be null
 		if ( ! floorstobeVisited.contains(dst) )
 			floorstobeVisited.add(dst) ;
 		
-		if ( getCurDir() == 0 ) {	
+		// guard clause
+		if ( getCurDir() == 0 ) {
 			int nxtDir;
 			if ( floorstobeVisited.isEmpty() ) nxtDir = 0 ;
 			
 			if ( dst > curFlr ) nxtDir = 1 ;
 			else nxtDir =  -1 ;
 			if ( nxtDir != 0) {
-				em.move(getCurFlr(), nxtDir) ;
+				elevatorMotor.move(getCurFlr(), nxtDir) ;
 				setCurDir(nxtDir);
 			}
 		}
@@ -70,11 +73,11 @@ class EC {
 			needToStop = getFloorstobeVisited().contains(flr);
 			
 		if ( needToStop ) {
-			em.stop() ;
+			elevatorMotor.stop() ;
 			setCurDir(0);
 			
 			// open doors
-			ed.open() ;
+			elevatorDoor.open() ;
 			fds.get(getCurFlr()).open() ;
 			if ( dt != null ) dt.start() ;
 			
@@ -91,12 +94,12 @@ class EC {
 		if ( dst > curFlr ) nxtDir = 1 ;
 		else nxtDir =  -1 ;
 		
-		ed.close() ;
+		elevatorDoor.close() ;
 		fds.get(getCurFlr()).close() ;
 		if ( dt != null ) dt.stop() ;
 		
 		if ( nxtDir != 0 ) {
-			em.move(getCurFlr(), nxtDir) ;
+			elevatorMotor.move(getCurFlr(), nxtDir) ;
 			setCurDir(nxtDir);
 		}
 	}
@@ -105,7 +108,7 @@ class EC {
 
 		if ( getCurDir() == 0  ) {
 			// open doors
-			ed.open() ;
+			elevatorDoor.open() ;
 			fds.get(getCurFlr()).open() ;
 			if ( dt != null ) dt.start() ;
 		}
@@ -114,7 +117,7 @@ class EC {
 		// elevatorDoor, floorDoors should not be null
 		if ( getCurDir() == 0 ) {
 			// closeDoor
-			ed.close() ;
+			elevatorDoor.close() ;
 			fds.get(getCurFlr()).close() ;
 			if ( dt != null ) dt.stop() ;
 		}
@@ -125,7 +128,7 @@ class EC {
 	public DoorStatus getDrSts(int floor) {
 		// elevatorDoor, floorDoors should not be null
 		
-		DoorStatus elevatorDS = ed.getDoorStatus();
+		DoorStatus elevatorDS = elevatorDoor.getDoorStatus();
 		DoorStatus floorDS = fds.get(floor).getDoorStatus();
 		
 		DoorStatus DS = DoorStatus.OPEN;

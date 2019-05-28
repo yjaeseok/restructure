@@ -1,7 +1,7 @@
 
 
 public class AdvancedFloorDisplay extends AbstractFloorDisplay {
-	public AdvancedFloorDisplay(EC ctrl, IFloorDisplayImplementor imp) {
+	public AdvancedFloorDisplay(ElevatorController ctrl, IFloorDisplayImplementor imp) {
 		super(ctrl, imp);
 	}
 	@Override

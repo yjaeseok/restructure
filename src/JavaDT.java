@@ -9,7 +9,7 @@ public class JavaDT {
 		task = new DoorTimerTask() ;
 		timer = new Timer() ;
 	}
-	public void setDoorTimeout(EC doorTimeout) {
+	public void setDoorTimeout(ElevatorController doorTimeout) {
 		task.setDoorTimeout(doorTimeout);
 	}
 	public void start() {
