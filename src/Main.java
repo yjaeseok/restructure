@@ -26,7 +26,7 @@ public class Main {
 		
 		// Devices for Elevator 1
 		ElevatorMotor elevatorMotor1 = new ElevatorMotor(DeviceVendor.Samsung);
-		JavaDT doorTimer1 = new JavaDT();
+		JavaDoorTimer doorTimer1 = new JavaDoorTimer();
 			
 		ElevatorDoor elevatorDoor1 = new ElevatorDoor(DeviceVendor.Samsung);
 		List<FloorDoor> floorDoors1 = createFloorDoors(floorCount, DeviceVendor.Samsung);
