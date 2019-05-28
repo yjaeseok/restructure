@@ -43,7 +43,7 @@ class SimpleElevatorMotor {
 	}
 	private void print(ElevatorController ctrl) {
 		System.out.println(ctrl.getCurFlr());
-		System.out.println(ctrl.getCurDir());
+		System.out.println(ctrl.getCurrentElevatorDirection());
 		System.out.println(ctrl.getFloorstobeVisited());
 	}
 }

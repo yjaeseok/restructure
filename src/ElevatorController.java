@@ -32,7 +32,7 @@ class ElevatorController {
 	}
 	public void stop() {
 		// elevatorMotor, elevatorDoor, floorDoors should not be null
-		if ( getCurDir() != Direction.NONE) {
+		if ( getCurrentElevatorDirection() != Direction.NONE) {
 			elevatorMotor.stop();
 			setCurDir(Direction.NONE);
 		}
@@ -47,7 +47,7 @@ class ElevatorController {
 		if ( ! floorstobeVisited.contains(dst) )
 			floorstobeVisited.add(dst) ;
 		
-		if ( getCurDir() == Direction.NONE ) {
+		if ( getCurrentElevatorDirection() == Direction.NONE ) {
 			Direction nxtDir;
 			if ( floorstobeVisited.isEmpty() ) nxtDir = Direction.NONE ;
 			
@@ -104,7 +104,7 @@ class ElevatorController {
 	public void openDoor() {
 		// elevatorDoor, floorDoors should not be null
 
-		if ( getCurDir() == Direction.NONE  ) {
+		if ( getCurrentElevatorDirection() == Direction.NONE  ) {
 			// open doors
 			elevatorDoor.open() ;
 			floorDoors.get(getCurFlr()).open() ;
@@ -113,7 +113,7 @@ class ElevatorController {
 	}
 	public void closeDoor() {
 		// elevatorDoor, floorDoors should not be null
-		if ( getCurDir() == Direction.NONE ) {
+		if ( getCurrentElevatorDirection() == Direction.NONE ) {
 			// closeDoor
 			elevatorDoor.close() ;
 			floorDoors.get(getCurFlr()).close() ;
@@ -145,7 +145,7 @@ class ElevatorController {
 		elevatorInsideDisplay.update();
 		abstractFloorDisplay.update();
 	}
-	public Direction getCurDir() {
+	public Direction getCurrentElevatorDirection() {
 		return curDir;
 	}
 	public void setCurDir(Direction curDir) {

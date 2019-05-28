@@ -10,7 +10,7 @@ abstract class AbstractFloorDisplay {
 	}
 	public void update() {
 		int curFlr = ctrl.getCurFlr() ;
-		Direction curDir = ctrl.getCurDir();
+		Direction curDir = ctrl.getCurrentElevatorDirection();
 		showPos(curFlr);
 		showDir(curDir);
 	}
