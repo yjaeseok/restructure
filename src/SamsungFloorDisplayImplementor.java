@@ -8,11 +8,11 @@ public class SamsungFloorDisplayImplementor implements IFloorDisplayImplementor 
 	public void deactivateDisplay() {
 		activated = "no";
 	}
-	public void showCurrentPosition(final int floor) {
+	public void showCurrentPosition(final Floor floor) {
 		if ( activated.equals("no") ) return;
 		System.out.println("Samsung Display: Current Postion " + floor);
 	}
-	public void expressCurrentPositionByVoice(final int floor) {
+	public void expressCurrentPositionByVoice(final Floor floor) {
 		if ( activated.equals("no") ) return;
 		System.out.println("Samsung Voice: Current Postion " + floor);
 	}

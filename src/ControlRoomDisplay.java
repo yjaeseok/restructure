@@ -7,7 +7,7 @@ public class ControlRoomDisplay {
 		this.ctrl = elevatorController ;
 	}
 	public void update() {
-		int curFlr = ctrl.getCurrentElevatorFloor() ;
+		Floor curFlr = ctrl.getCurrentElevatorFloor() ;
 		System.out.println("Control Room: " + curFlr) ;
 	}
 }

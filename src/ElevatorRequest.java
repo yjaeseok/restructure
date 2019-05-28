@@ -1,9 +1,9 @@
 
 public class ElevatorRequest {
-	private final int flr;
+	private final Floor flr;
 	private SimpleElevatorManager elevatorManager;
 
-	public ElevatorRequest(final int flr, final SimpleElevatorManager elevatorManager) {
+	public ElevatorRequest(final Floor flr, final SimpleElevatorManager elevatorManager) {
 		this.flr = flr;
 		this.elevatorManager = elevatorManager;
 	}

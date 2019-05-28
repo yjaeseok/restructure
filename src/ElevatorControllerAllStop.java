@@ -8,7 +8,7 @@ public class ElevatorControllerAllStop extends ElevatorController {
 	}
 
 	@Override
-	protected boolean getNeedToStop(final int floor) {
+	protected boolean getNeedToStop(final Floor floor) {
 		return true;
 	}
 }

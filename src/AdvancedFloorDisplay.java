@@ -5,7 +5,7 @@ public class AdvancedFloorDisplay extends AbstractFloorDisplay {
 		super(ctrl, imp);
 	}
 	@Override
-	public void showPos(final int flr) {
+	public void showPos(final Floor flr) {
 		IFloorDisplayImplementor imp = getImp();
 		imp.showCurrentPosition(flr);
 		imp.expressCurrentPositionByVoice(flr);

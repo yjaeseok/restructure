@@ -8,8 +8,8 @@ abstract class ElevatorController {
 	private List<FloorDoor> floorDoors;
 	private JavaDoorTimer doorTimer;
 	
-	private List<Integer> floorstobeVisited = new ArrayList<>();
-	private int curFlr = 1;
+	private List<Floor> floorstobeVisited = new ArrayList<>();
+	private Floor curFlr = new Floor(1);
 	private Direction curDir = Direction.NONE;
 	
 	private ControlRoomDisplay controlRoomDisplay;
@@ -35,11 +35,11 @@ abstract class ElevatorController {
 		}
 		// open doors
 		elevatorDoor.open() ;
-		floorDoors.get(getCurrentElevatorFloor()).open() ;
+		floorDoors.get(getCurrentElevatorFloor().getFloor()).open() ;
 		if ( doorTimer != null ) doorTimer.start() ;
 	}
 	
-	public void goTo(final int dst) {
+	public void goTo(final Floor dst) {
 		// elevatorMotor should not be null
 		if ( ! floorstobeVisited.contains(dst) )
 			floorstobeVisited.add(dst) ;
@@ -48,7 +48,7 @@ abstract class ElevatorController {
 			Direction nxtDir;
 			if ( floorstobeVisited.isEmpty() ) nxtDir = Direction.NONE ;
 			
-			if ( dst > curFlr ) nxtDir = Direction.UP ;
+			if ( dst.compareTo(curFlr) > 0 ) nxtDir = Direction.UP ;
 			else nxtDir =  Direction.DOWN ;
 			if ( nxtDir != Direction.NONE ) {
 				elevatorMotor.move(getCurrentElevatorFloor(), nxtDir) ;
@@ -57,9 +57,9 @@ abstract class ElevatorController {
 		}
 	}
 	
-	abstract boolean getNeedToStop(int floor);
+	abstract boolean getNeedToStop(Floor floor);
 	
-	public void approaching(final int floor) {
+	public void approaching(final Floor floor) {
 		// elevatorMotor, elevatorDoor, floorDoors should not be null
 		notifyApproaching(floor);
 		setCurFlr(floor) ;
@@ -71,7 +71,7 @@ abstract class ElevatorController {
 		}
 	}
 
-	private void notifyApproaching(final int floor) {
+	private void notifyApproaching(final Floor floor) {
 		System.out.println("\nApproaching " + floor + "th floor") ;
 	}
 	public void doorTimeout() {
@@ -80,12 +80,12 @@ abstract class ElevatorController {
 		Direction nxtDir;
 		if ( floorstobeVisited.isEmpty() ) nxtDir = Direction.NONE ;
 		
-		final int dst = floorstobeVisited.get(0) ;
-		if ( dst > curFlr ) nxtDir = Direction.UP ;
+		final Floor dst = floorstobeVisited.get(0) ;
+		if ( dst.compareTo(curFlr) > 0 ) nxtDir = Direction.UP ;
 		else nxtDir =  Direction.DOWN ;
 		
 		elevatorDoor.close() ;
-		floorDoors.get(getCurrentElevatorFloor()).close() ;
+		floorDoors.get(getCurrentElevatorFloor().getFloor()).close() ;
 		if ( doorTimer != null ) doorTimer.stop() ;
 		
 		if ( nxtDir != Direction.NONE ) {
@@ -99,7 +99,7 @@ abstract class ElevatorController {
 		if ( getCurrentElevatorDirection() == Direction.NONE  ) {
 			// open doors
 			elevatorDoor.open() ;
-			floorDoors.get(getCurrentElevatorFloor()).open() ;
+			floorDoors.get(getCurrentElevatorFloor().getFloor()).open() ;
 			if ( doorTimer != null ) doorTimer.start() ;
 		}
 	}
@@ -108,18 +108,18 @@ abstract class ElevatorController {
 		if ( getCurrentElevatorDirection() == Direction.NONE ) {
 			// closeDoor
 			elevatorDoor.close() ;
-			floorDoors.get(getCurrentElevatorFloor()).close() ;
+			floorDoors.get(getCurrentElevatorFloor().getFloor()).close() ;
 			if ( doorTimer != null ) doorTimer.stop() ;
 		}
 	}
-	public List<Integer> getFloorstobeVisited() {
+	public List<Floor> getFloorstobeVisited() {
 		return floorstobeVisited;
 	}
-	public DoorStatus getDrSts(final int floor) {
+	public DoorStatus getDrSts(final Floor floor) {
 		// elevatorDoor, floorDoors should not be null
 		
 		DoorStatus elevatorDS = elevatorDoor.getDoorStatus();
-		DoorStatus floorDS = floorDoors.get(floor).getDoorStatus();
+		DoorStatus floorDS = floorDoors.get(floor.getFloor()).getDoorStatus();
 		
 		DoorStatus DS = DoorStatus.OPEN;
 		if ( elevatorDS == DoorStatus.CLOSED && floorDS == DoorStatus.CLOSED )
@@ -127,10 +127,10 @@ abstract class ElevatorController {
 		
 		return DS;
 	}
-	public int getCurrentElevatorFloor() {
+	public Floor getCurrentElevatorFloor() {
 		return curFlr ;
 	}
-	public void setCurFlr(final int curFlr) {
+	public void setCurFlr(final Floor curFlr) {
 		this.curFlr = curFlr;
 		
 		controlRoomDisplay.update();

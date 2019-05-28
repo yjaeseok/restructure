@@ -1,9 +1,9 @@
 
 public class ElevatorDestinationRequest {
 	private final ElevatorController ctrl;
-	private int flr;
+	private Floor flr;
 	
-	public ElevatorDestinationRequest(final int floor, final ElevatorController ctrl) {
+	public ElevatorDestinationRequest(final Floor floor, final ElevatorController ctrl) {
 		this.flr = floor;
 		this.ctrl = ctrl;
 	}

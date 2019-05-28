@@ -18,7 +18,7 @@ public class ElevatorMotor  {
 	private void setMotorStatus(final MotorStatus motorStatus) {
 		this.motorStatus = motorStatus;
 	}
-	public void move(final int currentFloor, final Direction direction) {
+	public void move(final Floor currentFloor, final Direction direction) {
 		if (  getMotorStatus() == MotorStatus.MOVING ) return ;
 		
 		assert elevatorController != null;

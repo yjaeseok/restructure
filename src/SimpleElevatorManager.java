@@ -7,7 +7,7 @@ class SimpleElevatorManager {
 	public SimpleElevatorManager(final List<ElevatorController> ctrls) {
 		this.ctrls = ctrls;
 	}	
-	public void requestElevator(final int dest, final Direction dir) {
+	public void requestElevator(final Floor dest, final Direction dir) {
 		int select;
 		// 0..23
 		if ( isBefore12AM() ) { // ¿ÀÀü; Response Time Scheduler
@@ -32,12 +32,12 @@ class SimpleElevatorManager {
 		for ( ElevatorController ctrl: ctrls )
 			if ( goTo1stFloor ) {
 				ctrl.getFloorstobeVisited().clear();
-				ctrl.goTo(1);
+				ctrl.goTo(new Floor(1));
 			}
 			else
 				ctrl.stop();
 	}
-	public boolean isToBeVisistedFloor(final int flr) {
+	public boolean isToBeVisistedFloor(final Floor flr) {
 		for ( ElevatorController ctrl: ctrls ) {
 			if ( ctrl.getFloorstobeVisited().contains(flr) ) return true;
 		}

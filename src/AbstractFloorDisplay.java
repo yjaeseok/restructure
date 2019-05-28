@@ -9,7 +9,7 @@ abstract class AbstractFloorDisplay {
 		this.imp = imp;
 	}
 	public void update() {
-		int curFlr = ctrl.getCurrentElevatorFloor() ;
+		Floor curFlr = ctrl.getCurrentElevatorFloor() ;
 		Direction curDir = ctrl.getCurrentElevatorDirection();
 		showPos(curFlr);
 		showDir(curDir);
@@ -21,6 +21,6 @@ abstract class AbstractFloorDisplay {
 		else imp.deactivateDisplay();
 	}
 	protected IFloorDisplayImplementor getImp() { return imp; }
-	public abstract void showPos(final int flr);
+	public abstract void showPos(final Floor flr);
 	public abstract void showDir(final Direction dir);
 }
