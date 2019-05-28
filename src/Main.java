@@ -32,7 +32,7 @@ public class Main {
 		List<FloorDoor> floorDoors1 = createFloorDoors(floorCount, DeviceVendor.Samsung);
 		
 		// every floor stop
-		ElevatorController elevatorController1 = new ElevatorController(0,
+		ElevatorController elevatorController1 = new ElevatorControllerAllStop(
 				elevatorMotor1, elevatorDoor1, floorDoors1, doorTimer1);
 		doorTimer1.setDoorTimeout(elevatorController1);
 		elevatorMotor1.setElevatorController(elevatorController1);
@@ -50,8 +50,8 @@ public class Main {
 		List<FloorDoor> floorDoors2 = createFloorDoors(floorCount, DeviceVendor.Hyundai);
 		
 		// demand only stop
-		ElevatorController elevatorController2 = new ElevatorController(1,
-					elevatorMotor2, elevatorDoor2, floorDoors2, null);
+		ElevatorController elevatorController2 = new ElevatorControllerDemandOnlyStop(
+				elevatorMotor2, elevatorDoor2, floorDoors2, null);
 		elevatorMotor2.setElevatorController(elevatorController2);
 
 		IFloorDisplayImplementor imp = new SamsungFloorDisplayImplementor();

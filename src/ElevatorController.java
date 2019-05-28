@@ -2,9 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class ElevatorController {
-	private int k; // 0: every floor stop, 1: demand only stop
-
+abstract class ElevatorController {
 	private ElevatorMotor elevatorMotor;
 	private ElevatorDoor elevatorDoor;
 	private List<FloorDoor> floorDoors;
@@ -18,10 +16,9 @@ class ElevatorController {
 	private ElevatorInsideDisplay elevatorInsideDisplay;
 	private AbstractFloorDisplay abstractFloorDisplay;
 	
-	public ElevatorController(final int kind, final ElevatorMotor elevatorMotor,
+	public ElevatorController(final ElevatorMotor elevatorMotor,
 			final ElevatorDoor elevatorDoor, final List<FloorDoor> floorDoors,
 			final JavaDoorTimer doorTimer) {
-		this.k = kind;
 		this.elevatorMotor = elevatorMotor;
 		this.elevatorDoor = elevatorDoor;
 		this.floorDoors = floorDoors;
@@ -59,28 +56,23 @@ class ElevatorController {
 			}
 		}
 	}
-	public void approaching(final int flr) {
+	
+	abstract boolean getNeedToStop(int floor);
+	
+	public void approaching(final int floor) {
 		// elevatorMotor, elevatorDoor, floorDoors should not be null
-		System.out.println("\nApproaching " + flr + "th floor") ;
-		setCurFlr(flr) ;
+		notifyApproaching(floor);
+		setCurFlr(floor) ;
 		
-		boolean needToStop;
-		if ( k == 0 )
-			needToStop = true;
-		else
-			needToStop = getFloorstobeVisited().contains(flr);
-			
+		boolean needToStop = getNeedToStop(floor);
 		if ( needToStop ) {
-			elevatorMotor.stop() ;
-			setCurDir(Direction.NONE);
-			
-			// open doors
-			elevatorDoor.open() ;
-			floorDoors.get(getCurrentElevatorFloor()).open() ;
-			if ( doorTimer != null ) doorTimer.start() ;
-			
-			floorstobeVisited.remove(flr) ;
+			stop();
+			floorstobeVisited.remove(floor) ;
 		}
+	}
+
+	private void notifyApproaching(final int floor) {
+		System.out.println("\nApproaching " + floor + "th floor") ;
 	}
 	public void doorTimeout() {
 		// elevatorMotor, elevatorDoor, floorDoors should not be null
