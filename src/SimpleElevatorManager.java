@@ -1,10 +1,10 @@
 
 import java.util.Calendar;
 import java.util.List;
-class SimpleElevatorMotor {
+class SimpleElevatorManager {
 	private List<ElevatorController> ctrls ;
 
-	public SimpleElevatorMotor(final List<ElevatorController> ctrls) {
+	public SimpleElevatorManager(final List<ElevatorController> ctrls) {
 		this.ctrls = ctrls;
 	}	
 	public void requestElevator(final int dest, final Direction dir) {

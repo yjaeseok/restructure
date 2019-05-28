@@ -10,12 +10,12 @@ public class Main {
 		
 		List<ElevatorController> elevatorControllers = createElevatorControllers(floorCount);
 		
-		SimpleElevatorMotor em = new SimpleElevatorMotor(elevatorControllers);
+		SimpleElevatorManager elevatorManager = new SimpleElevatorManager(elevatorControllers);
 		
 		List<ElevatorRequest> requestButtons = new ArrayList<>();
 		for ( int i = 0; i < floorCount; i ++ ) {
 			int floor = i+1;
-			ElevatorRequest requestButton = new ElevatorRequest(floor,em);
+			ElevatorRequest requestButton = new ElevatorRequest(floor,elevatorManager);
 			requestButtons.add(requestButton);
 		}
 		requestButtons.get(0).down();
